@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/id_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textColor="@color/toolbarText"
+            android:text="@string/content1" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/Fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroupbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="#f1f1f1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radiobutton_shouye"
+            style="@style/radiobuttonstyle"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_shouye_selector"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_bankuai"
+            style="@style/radiobuttonstyle"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_bankuai_selector"
+            android:text="版块" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_mine"
+            style="@style/radiobuttonstyle"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_mine_selector"
+            android:text="我的" />
+    </RadioGroup>
+</LinearLayout>
