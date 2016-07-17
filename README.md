@@ -1,2 +1,0 @@
-# SingSeApp
-add test
