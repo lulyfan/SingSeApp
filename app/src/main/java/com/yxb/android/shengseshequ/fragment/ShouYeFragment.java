@@ -159,7 +159,6 @@ public class ShouYeFragment extends Fragment {
                         Banner.VariablesBean.HotThreadListBean hotThreadListBean = new Banner.VariablesBean.HotThreadListBean();
                         hot_thread_list.add(hotThreadListBean);
                         Log.e("jjjjj", "onCreateView: " + hot_thread_list.size());
-
 //                        List<Banner.VariablesBean.HotThreadListBean> hotListBean = response.getVariables().getHot_thread_list();
 ////                        hot_thread_list =response.getVariables().getHot_thread_list();
 //                        Banner.VariablesBean.HotThreadListBean hotThreadListBean = new Banner.VariablesBean.HotThreadListBean();
