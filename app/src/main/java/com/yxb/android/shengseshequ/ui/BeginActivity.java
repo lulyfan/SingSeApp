@@ -24,6 +24,6 @@ public class BeginActivity extends AppCompatActivity {
                 finish();
             }
         };
-        timer.schedule(task, 3400 * 1);
+        timer.schedule(task, 1000 * 1);
     }
 }

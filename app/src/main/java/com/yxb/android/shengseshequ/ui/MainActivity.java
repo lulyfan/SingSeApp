@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +21,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.bmob.v3.Bmob;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton radiobuttonMine;
     @Bind(R.id.radioGroupbutton)
     RadioGroup radioGroupbutton;
-    @Bind(R.id.id_toolbar)
-    Toolbar idToolbar;
+//    @Bind(R.id.id_toolbar)
+//    Toolbar idToolbar;
 
     private List<Fragment> fragments ;
     private FragmentManager manger;
@@ -45,11 +44,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        setSupportActionBar(idToolbar);//绑定toolbar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
+        Bmob.initialize(this,"05a23ce82bce07788272ab4a17d7b7b8");//应用名称：shengse
+
+
+//        setSupportActionBar(idToolbar);//绑定toolbar
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setDisplayShowTitleEnabled(false);
+//        }
         fragments = new ArrayList<>();
         fragments.add(new ShouYeFragment());
         fragments.add(new BanKuaiFragment());

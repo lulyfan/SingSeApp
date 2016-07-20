@@ -1,13 +1,11 @@
 package com.yxb.android.shengseshequ.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +15,6 @@ import com.android.volley.toolbox.Volley;
 import com.yxb.android.shengseshequ.Fan_util.MySingleQueue;
 import com.yxb.android.shengseshequ.R;
 import com.yxb.android.shengseshequ.model.Forum;
-import com.yxb.android.shengseshequ.ui.ForumActivity;
 
 import java.util.List;
 
@@ -27,13 +24,12 @@ import butterknife.ButterKnife;
 /**
  * Created by acer on 2016/7/17.
  */
-public class HotForumAdapter extends RecyclerView.Adapter<HotForumAdapter.ViewHolder> implements View.OnClickListener {
+public class HotForumAdapter extends RecyclerView.Adapter<HotForumAdapter.ViewHolder> {
 
-    private Context context;
-    private List<Forum.VariablesBean.HotForumListBean> list;
-    private OnItemClikListener onItemClikListener;
+    Context context;
+    List<Forum.VariablesBean.HotForumListBean> list;
 
-    public HotForumAdapter(final Context context, final List<Forum.VariablesBean.HotForumListBean> list) {
+    public HotForumAdapter(Context context, List<Forum.VariablesBean.HotForumListBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -46,15 +42,11 @@ public class HotForumAdapter extends RecyclerView.Adapter<HotForumAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.hot_forum, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        view.setOnClickListener(this);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.itemView.setTag(position);
-
         Forum.VariablesBean.HotForumListBean hotForumListBean = list.get(position);
         holder.forumName.setText(hotForumListBean.getTitle());
         holder.postNum.setText(hotForumListBean.getPosts());
@@ -67,28 +59,6 @@ public class HotForumAdapter extends RecyclerView.Adapter<HotForumAdapter.ViewHo
     @Override
     public int getItemCount() {
         return list == null?0:list.size();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (onItemClikListener == null)
-        {
-            onItemClikListener = new OnItemClikListener() {
-                @Override
-                public void onItemClik(View view, int posizition) {
-                    String fid = list.get(posizition).getFid();
-                    TextView textView = (TextView) view.findViewById(R.id.forumName);
-                    String title = textView.getText().toString();
-                    Intent intent = new Intent(context, ForumActivity.class);
-                    intent.putExtra("title",title);
-                    intent.putExtra("fid",fid);
-                    System.out.println("startActivity");
-                    context.startActivity(intent);
-                }
-            };
-        }
-        int posizition = (int)(v.getTag());
-        onItemClikListener.onItemClik(v, posizition);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -104,11 +74,4 @@ public class HotForumAdapter extends RecyclerView.Adapter<HotForumAdapter.ViewHo
         }
     }
 
-    public void setOnItemClikListener(OnItemClikListener listener) {
-        this.onItemClikListener = listener;
-    }
-
-    interface OnItemClikListener {
-        void onItemClik(View view, int posizition);
-    }
 }

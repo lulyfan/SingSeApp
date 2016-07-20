@@ -49,7 +49,7 @@ public class BanKuaiFragment extends Fragment {
     LinearLayout moreLayout;
     HotForumAdapter adapter;
     private final String TAG = "forum";
-    private final String URL_FORUMS = "http://www.singse.com/api/mobile/?mobile=no&version=5&module=forumindex";
+    private final String URL_FORUM = "http://www.singse.com/api/mobile/?mobile=no&version=5&module=forumindex";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class BanKuaiFragment extends Fragment {
     public boolean loadData() {
         if (queue == null)
             queue = MySingleQueue.getInstance(getActivity().getApplicationContext()).getRequestQueue();
-        StringRequest request = new StringRequest(URL_FORUMS,
+        StringRequest request = new StringRequest(URL_FORUM,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -99,20 +99,15 @@ public class BanKuaiFragment extends Fragment {
     }
 
     public void showView(Forum forum) {
-
-        //获取总贴数,今日帖子量,会员数并显示
         Forum.VariablesBean.SummaryBean summaryBean = forum.getVariables().getSummary();
         num_totalPost.setText(summaryBean.getPosts());
         num_Today.setText(summaryBean.getBbsnewposts());
         num_member.setText(summaryBean.getMembers());
 
-        //获取数据到热门板块
         List<Forum.VariablesBean.HotForumListBean> hot_forum_list = forum.getVariables().getHot_forum_list();
         adapter.setData(hot_forum_list);
         adapter.notifyDataSetChanged();
 
-        //获取数据到更多版块
-        moreLayout.removeAllViews();
         List<Forum.VariablesBean.CatlistBean> catlist = forum.getVariables().getCatlist();
         List<Forum.VariablesBean.ForumlistBean> totalforumlist = forum.getVariables().getForumlist();
         List<String> totalFids = new ArrayList<>();
